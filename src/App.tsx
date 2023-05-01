@@ -80,7 +80,7 @@ function App() {
       foundPlaylist.data = [];
     }
     try{
-      const _data = await fetch(`http://www.youtube.com/oembed?url=${data.url}&format=json`);
+      const _data = await fetch(`https://www.youtube.com/oembed?url=${data.url}&format=json`);
       const parsedResp = await _data.json();
       const dataToPush:PlaylistIntfData = {
           name: parsedResp.title,
