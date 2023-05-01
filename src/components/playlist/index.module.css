@@ -1,0 +1,82 @@
+.playlistWrapper{
+    background: url('/public/darkBackground1.jpg');
+    height: 100%;
+}
+.playlistContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.playlistCreateBox{
+    padding: 1rem;
+    box-shadow: #759e03 0px 0px 25px 0px;
+    border: 1px solid #00000026;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    align-items: center;
+    background: white;
+}
+.playlistCreateBoxTitle{
+    color: #000000a1;
+}
+.playlistCreateBoxInput{
+    height: 2rem;
+    border: 1px solid #00000052;
+    border-radius: 0.5rem;
+}
+.playlistCreateBoxButton{
+    cursor: pointer;
+    box-shadow: 0 2px 5px 1px rgba(64,60,67,.16);
+    border: 1px solid #00000026;
+    height: 2.5rem;
+    border-radius: 0.4rem;
+    margin: 1rem;
+    background: none;
+}
+
+.playlistDropDownContainerWrapper{
+    padding:1rem;
+}
+.playlistDropDownContainer{
+    display: flex;
+    flex-direction: column;
+}
+.playlistDropDownContainerButton{
+    background: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px 1px rgba(64,60,67,.16);
+    border: 1px solid #00000026;
+    padding: 1rem 0;
+}
+.playlistDropDownContainerSelectBox{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+}
+.playlistDropDownContainerListImg{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 4rem;
+}
+.playlistDropDownContainerListLabel{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0 0 0 0.5rem;
+    cursor: pointer;
+}
+.playlistDropDownContainerList{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px 1px rgba(64,60,67,.16);
+    border: 1px solid #00000026;
+    padding: 0.5rem;
+    margin: 0.2rem 0;
+}

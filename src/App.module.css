@@ -1,0 +1,23 @@
+.app{
+    width: 100vw;
+    height: 100vh;
+}
+.bodySection{
+    height: calc(100vh - 3.5rem);
+    display: flex;
+}
+.playlist{
+    height: 100%;
+}
+.widthThirtyPercent{
+    width: 30%;
+}
+.widthSeventyPercent{
+    width: 70%;
+}
+.widthHundredPercent{
+    width: 100%;
+}
+.player{
+    height: 100%;
+}
