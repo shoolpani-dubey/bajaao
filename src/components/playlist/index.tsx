@@ -57,7 +57,7 @@ const Playlist = (props:any) => {
         }else{
             setOpenCreatePlaylist(true);
         }
-    },[props.playlist]);
+    },[props.playlist, selectedPlaylist]);
 
     if((!props?.playlist
         || props.playlist.length<=0)
