@@ -4,7 +4,7 @@ import { PlaylistIntf, PlaylistIntfData } from '../../globalTypes';
 
 const Playlist = (props:any) => {
     const [playlistName, setPlaylistName] = useState('');
-    const [selectedPlaylist, setSelectedPlaylist] = useState<number>(0);
+    const [selectedPlaylist, setSelectedPlaylist] = useState<number|undefined>(undefined);
     const [selectedPlaylistData, setSelectedPlayListData] = useState<PlaylistIntfData[]|null>(null);
     const [openCreatePlaylist, setOpenCreatePlaylist] = useState(false);
     const [toAddYTUrl, setToAddYTUrl] = useState('');
@@ -24,13 +24,13 @@ const Playlist = (props:any) => {
         if(!event?.target?.value){
             return;
         }
-        console.log("Ch:",event.target.value);
-        setSelectedPlaylist(event.target.value);
-        const selectedPlaylistFiltered:PlaylistIntf = props.playlist.find((e:PlaylistIntf)=>e.key===event.target.value);
-        if(!selectedPlaylistFiltered){
-            return;
-        }
-        setSelectedPlayListData(selectedPlaylistFiltered.data);
+        const value = Number(event.target.value);
+        console.log("Ch:",typeof(value));
+        setSelectedPlaylist(value);
+        console.log("PP:",props.playlist);
+        const selectedPlaylistFiltered:PlaylistIntf = props.playlist.find((e:PlaylistIntf)=>e.key===value);
+        console.log("Found:",selectedPlaylistFiltered);
+        setSelectedPlayListData(selectedPlaylistFiltered?.data);
     };
     const _openCreatePlaylist = () => {
         setOpenCreatePlaylist(true);
@@ -40,6 +40,7 @@ const Playlist = (props:any) => {
             playlist:selectedPlaylist,
             url: toAddYTUrl
         });
+        setToAddYTUrl('');
     };
     const _handleItemPlay = (data:PlaylistIntfData) => {
         props.onPlayItem(data);
@@ -48,9 +49,11 @@ const Playlist = (props:any) => {
     useEffect(()=>{
         if((props.playlist && Array.isArray(props.playlist) && props.playlist.length>0)){
             setOpenCreatePlaylist(false);
-            const selectedPlaylistFiltered:PlaylistIntf = props.playlist[0];
-            setSelectedPlaylist(selectedPlaylistFiltered.key);
-            setSelectedPlayListData(selectedPlaylistFiltered.data);
+            if(!selectedPlaylist){
+                const selectedPlaylistFiltered:PlaylistIntf = props.playlist[0];
+                setSelectedPlaylist(selectedPlaylistFiltered.key);
+                setSelectedPlayListData(selectedPlaylistFiltered.data);
+            }
         }else{
             setOpenCreatePlaylist(true);
         }
@@ -86,6 +89,7 @@ const Playlist = (props:any) => {
                     <label>Select a Playlist to play
                     </label>
                     <select
+                        className={playlistStyle.playlistDropDownContainerSelect}
                             onChange={_handlePlaylistChange}
                             value={selectedPlaylist}>
                         {props.playlist.map((ele:PlaylistIntf)=>{
@@ -99,8 +103,14 @@ const Playlist = (props:any) => {
             <div>
                 <div>
                     <label>Add youtube url:</label>
-                    <input value={toAddYTUrl} onChange={(event:React.ChangeEvent<any>)=>{setToAddYTUrl(event.target.value)}} />
-                    <button onClick={_handleOnAddYTUrl}>Submit</button>
+                    <div className={playlistStyle.playlistDropDownContainerInputWrapper}>
+                        <input
+                            className={playlistStyle.playlistDropDownContainerInput}
+                            value={toAddYTUrl} onChange={(event:React.ChangeEvent<any>)=>{setToAddYTUrl(event.target.value)}} />
+                        <button
+                            className={playlistStyle.playlistDropDownContainerInputButton}
+                            onClick={_handleOnAddYTUrl}>Submit</button>
+                    </div>
                 </div>
                 {selectedPlaylistData
                 && Array.isArray(selectedPlaylistData)
@@ -109,6 +119,7 @@ const Playlist = (props:any) => {
                     {selectedPlaylistData.map(e=>{
                         return (
                             <button
+                                key={e.key}
                                 onClick={()=>{_handleItemPlay(e)}}
                                 className={playlistStyle.playlistDropDownContainerList}>
                                 <img

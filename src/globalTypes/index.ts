@@ -1,4 +1,5 @@
 interface PlaylistIntfData{
+    key:number,
     name?:string,
     url: string,
     thumbnail?:string

@@ -85,9 +85,11 @@ function App() {
       const dataToPush:PlaylistIntfData = {
           name: parsedResp.title,
           url: data.url,
-          thumbnail: parsedResp.thumbnail_url
+          thumbnail: parsedResp.thumbnail_url,
+          key: new Date().getTime()
       };
       foundPlaylist.data.push(dataToPush);
+      playlist[foundPlaylistIndex] = foundPlaylist;
       setPlaylist([
         ...playlist
       ]);
