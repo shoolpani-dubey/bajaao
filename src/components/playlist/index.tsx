@@ -69,6 +69,7 @@ const Playlist = (props:any) => {
         }else{
             setOpenCreatePlaylist(true);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[props.playlist]);
 
     if((!props?.playlist

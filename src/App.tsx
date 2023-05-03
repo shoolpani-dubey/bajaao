@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import ReactPlayer from 'react-player'
 import appStyle from './App.module.css';
 import Header from './components/header';
 import Playlist from './components/playlist';
