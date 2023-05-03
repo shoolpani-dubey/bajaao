@@ -20,4 +20,9 @@
 }
 .player{
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('/public/london_night.jpeg');
+    background-size: cover;
 }

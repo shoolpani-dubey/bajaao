@@ -4,6 +4,7 @@ import appStyle from './App.module.css';
 import Header from './components/header';
 import Playlist from './components/playlist';
 import { PlaylistIntf, PlaylistIntfData } from './globalTypes';
+import Player from './components/player';
 
 enum OrientationType{
   Portrait=0,
@@ -16,7 +17,7 @@ function App() {
   const [playerWidth, setPlayerWidth] = useState<number>(0);
   const [playerHeight, setPlayerHeight] = useState<number>(0);
   const [playlist, setPlaylist] = useState<PlaylistIntf[]>([]);
-  const [urlToPlay, setUrlToPlay] = useState('https://www.youtube.com/watch?v=m3m1dXmTrJU');
+  const [urlToPlay, setUrlToPlay] = useState<string|null>(null);
   const [ifPlayerPlaying, setIfPlayerPlaying] = useState(false);
 
   const playerRef = useRef(null);
@@ -108,6 +109,34 @@ function App() {
     setUrlToPlay(data.url);
     setIfPlayerPlaying(true);
   };
+  const onDeleteItem = (selectedPlaylist:number, data:PlaylistIntfData) => {
+    if(!selectedPlaylist
+      || !data?.key){
+      return;
+    }
+    const foundPlaylistIndex:number = playlist.findIndex((obj => obj.key === selectedPlaylist));
+    if(foundPlaylistIndex<0){
+      return;
+    }
+    const foundPlaylist = playlist[foundPlaylistIndex];
+    const foundPlaylistData = foundPlaylist.data;
+    if(!foundPlaylistData || foundPlaylistData.length<=0){
+      return;
+    }
+    const foundPlaylistDataIndex:number = foundPlaylistData.findIndex((obj => obj.key === data.key));
+    if(foundPlaylistDataIndex<0){
+      return;
+    }
+    foundPlaylistData.splice(foundPlaylistDataIndex,1);
+    playlist[foundPlaylistIndex] = foundPlaylist;
+    setPlaylist([
+      ...playlist
+    ]);
+    // update in localstorage
+    localStorage.setItem('bajaaoPlaylist',JSON.stringify([
+      ...playlist
+    ]));
+  }
 
   useEffect(()=>{
     if(screenOrientation!==OrientationType.Landscape
@@ -145,6 +174,7 @@ function App() {
             onAddYTUrlToPlaylist={onAddYTUrlToPlaylist}
             onCreatePlaylist={onCreatePlaylist}
             onPlayItem={onPlayItem}
+            onDeleteItem={onDeleteItem}
             playlist={playlist} />
         </div>
         <div id="player"
@@ -153,12 +183,12 @@ function App() {
           ${(screenOrientation === OrientationType.Landscape
           ? appStyle.widthSeventyPercent
           : appStyle.widthHundredPercent)}`}>
-          <ReactPlayer
-            playing={ifPlayerPlaying}
-            width={playerWidth}
-            height={playerHeight}
-            controls={true}
-            url={urlToPlay} />
+          <Player
+            ifPlayerPlaying={ifPlayerPlaying}
+            playerWidth={playerWidth}
+            playerHeight={playerHeight}
+            urlToPlay={urlToPlay}
+          />
         </div>
       </section>
     </div>

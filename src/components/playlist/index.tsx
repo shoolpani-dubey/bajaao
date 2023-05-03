@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import playlistStyle from './index.module.css';
 import { PlaylistIntf, PlaylistIntfData } from '../../globalTypes';
+import { AiOutlineDelete } from 'react-icons/ai';
 
 const Playlist = (props:any) => {
     const [playlistName, setPlaylistName] = useState('');
@@ -45,6 +46,13 @@ const Playlist = (props:any) => {
     const _handleItemPlay = (data:PlaylistIntfData) => {
         props.onPlayItem(data);
     };
+    const _handleItemDelete = (data:PlaylistIntfData) => {
+        const ans = window.confirm("Do you want to delete this song ?");
+        if(!ans){
+            return;
+        }
+        props.onDeleteItem(selectedPlaylist,data);
+    }
 
     useEffect(()=>{
         if((props.playlist && Array.isArray(props.playlist) && props.playlist.length>0)){
@@ -53,11 +61,15 @@ const Playlist = (props:any) => {
                 const selectedPlaylistFiltered:PlaylistIntf = props.playlist[0];
                 setSelectedPlaylist(selectedPlaylistFiltered.key);
                 setSelectedPlayListData(selectedPlaylistFiltered.data);
+            }else{
+                const selectedPlaylistFiltered:PlaylistIntf = props.playlist.find((e:PlaylistIntf)=>e.key===selectedPlaylist);
+
+                setSelectedPlayListData(selectedPlaylistFiltered.data);
             }
         }else{
             setOpenCreatePlaylist(true);
         }
-    },[props.playlist, selectedPlaylist]);
+    },[props.playlist]);
 
     if((!props?.playlist
         || props.playlist.length<=0)
@@ -115,25 +127,36 @@ const Playlist = (props:any) => {
                 {selectedPlaylistData
                 && Array.isArray(selectedPlaylistData)
                 && selectedPlaylistData.length>0
-                && <div>
+                && <>
                     {selectedPlaylistData.map(e=>{
                         return (
-                            <button
+                            <div
                                 key={e.key}
-                                onClick={()=>{_handleItemPlay(e)}}
                                 className={playlistStyle.playlistDropDownContainerList}>
                                 <img
                                     className={playlistStyle.playlistDropDownContainerListImg}
                                     src={e?.thumbnail}
                                     alt=""/>
-                                <label
-                                    title={e?.name}
-                                    className={playlistStyle.playlistDropDownContainerListLabel}>{e?.name?.toUpperCase()}</label>
-                            </button>
+                                <div className={playlistStyle.playlistDropDownContainerListLabelWrapper}>
+                                    <label
+                                        title={e?.name}
+                                        className={playlistStyle.playlistDropDownContainerListLabel}>{e?.name?.toUpperCase()}</label>
+                                    <div className={playlistStyle.playlistDropDownContainerListButtonWrapper}>
+                                        <button
+                                            onClick={()=>{_handleItemDelete(e)}}
+                                            className={playlistStyle.playlistDropDownContainerListButton +" "+playlistStyle.playlistDropDownContainerListButtonSecondary}
+                                            title={'delete'}><AiOutlineDelete/></button>
+                                        <button
+                                            title={'play'}
+                                            className={playlistStyle.playlistDropDownContainerListButton +" "+playlistStyle.playlistDropDownContainerListButtonPrimary}
+                                            onClick={()=>{_handleItemPlay(e)}}>Play</button>
+                                    </div>
+                                </div>
+                            </div>
                         )
                     })
                     }
-                </div>}
+                </>}
             </div>
         </div>
     );

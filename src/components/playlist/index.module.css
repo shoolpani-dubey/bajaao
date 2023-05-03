@@ -57,28 +57,56 @@
     padding: 1rem 0;
 }
 .playlistDropDownContainerListImg{
-    width: 3rem;
-    height: 3rem;
-    border-radius: 4rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: .5rem;
 }
 .playlistDropDownContainerListLabel{
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     padding: 0 0 0 0.5rem;
-    cursor: pointer;
 }
 .playlistDropDownContainerList{
     display: flex;
     align-items: center;
-    width: 100%;
+    /* width: 100%; */
     background: none;
     border-radius: 0.4rem;
-    cursor: pointer;
     box-shadow: 0 2px 5px 1px rgba(64,60,67,.16);
     border: 1px solid #00000026;
     padding: 0.5rem;
     margin: 0.2rem 0;
+}
+.playlistDropDownContainerListLabelWrapper{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    flex: 1;
+    overflow: hidden;
+}
+.playlistDropDownContainerListButtonWrapper{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+}
+.playlistDropDownContainerListButton{
+    background: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    /* box-shadow: 0 2px 5px 1px rgba(64,60,67,.16); */
+    border: 1px solid #00000026;
+    margin-left: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.8rem;
+}
+.playlistDropDownContainerListButtonPrimary{
+    border-color: #0000ff82;
+    color: blue;
+}
+.playlistDropDownContainerListButtonSecondary{
+    border-color: #ff00006e;
+    color: red;
 }
 .playlistDropDownContainerSelect{
     height: 2.5rem;
