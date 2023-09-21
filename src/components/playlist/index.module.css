@@ -17,6 +17,20 @@
     border-radius: 0.5rem;
     align-items: center;
     background: white;
+    position: relative;
+}
+.playlistCreateBoxClose{
+    padding: 0;
+    border: 0;
+    display: flex;
+    cursor: pointer;
+    position: absolute;
+    right: -12px;
+    top: -12px;
+    background: red;
+    color: white;
+    font-size: 1.5rem;
+    border-radius: 4px;
 }
 .playlistCreateBoxTitle{
     color: #000000a1;
@@ -35,7 +49,19 @@
     margin: 1rem;
     background: none;
 }
-
+.btnWrapper{
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem 0 0.5rem 0;
+}
+.btnWrapperBtn{
+    background: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.8rem;
+    border-color: #0000ff82;
+    color: blue;
+}
 .playlistDropDownContainerWrapper{
     padding:1rem;
 }

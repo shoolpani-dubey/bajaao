@@ -1,6 +1,6 @@
 .header{
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     padding: 0.25rem;
     align-items: center;
     border-bottom: 1px solid #E5E9EF;
@@ -10,6 +10,10 @@
     height: 3rem;
     object-fit: cover;
     border-radius: 0.4rem;
+}
+.headerLabel{
+    padding:0 0 0 1rem;
+    font-size: 2rem;
 }
 .headerOption{
     display: flex;
