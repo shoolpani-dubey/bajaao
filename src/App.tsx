@@ -101,13 +101,13 @@ function App() {
       // Error fetching the data for the yt url
     }
   };
-  const onPlayItem = (data: PlaylistIntfData) => {
-    if (!data?.url) {
-      return;
-    }
-    setUrlToPlay(data.url);
-    setIfPlayerPlaying(true);
-  };
+  // const onPlayItem = (data: PlaylistIntfData) => {
+  //   if (!data?.url) {
+  //     return;
+  //   }
+  //   setUrlToPlay(data.url);
+  //   setIfPlayerPlaying(true);
+  // };
   const onDeleteItem = (selectedPlaylist: number, data: PlaylistIntfData) => {
     if (!selectedPlaylist || !data?.key) {
       return;

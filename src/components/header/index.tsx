@@ -1,6 +1,6 @@
 import React from "react";
 import headerStyle from "./index.module.css";
-import { IoMdHelp } from "react-icons/io";
+// import { IoMdHelp } from "react-icons/io";
 import { GiMusicalNotes } from "react-icons/gi";
 
 interface PropsType {
