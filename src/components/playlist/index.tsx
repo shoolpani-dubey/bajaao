@@ -30,13 +30,13 @@ const Playlist = (props: any) => {
       return;
     }
     const value = Number(event.target.value);
-    console.log("Ch:", typeof value);
+    // console.log("Ch:", typeof value);
     setSelectedPlaylist(value);
-    console.log("PP:", props.playlist);
+    // console.log("PP:", props.playlist);
     const selectedPlaylistFiltered: PlaylistIntf = props.playlist.find(
       (e: PlaylistIntf) => e.key === value
     );
-    console.log("Found:", selectedPlaylistFiltered);
+    // console.log("Found:", selectedPlaylistFiltered);
     setSelectedPlayListData(selectedPlaylistFiltered?.data);
   };
   const _openCreatePlaylist = () => {

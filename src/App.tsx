@@ -25,7 +25,7 @@ function App() {
   const headerRef = useRef(null);
 
   const screenOrientationChangeListener = () => {
-    console.log(window.screen.orientation.type);
+    // console.log(window.screen.orientation.type);
     const orientationType = window?.screen?.orientation?.type;
     if (
       orientationType === "landscape-primary" ||
@@ -153,7 +153,7 @@ function App() {
       setIfPlayerPlaying(false);
       return;
     }
-    console.log("asfa", toPlayList[0]);
+    // console.log("asfa", toPlayList[0]);
     setUrlToPlay(toPlayList[0].url);
     setIfPlayerPlaying(true);
   }, [toPlayList]);
@@ -169,10 +169,10 @@ function App() {
       return;
     }
     setPlayerWidth(playerRef?.current["offsetWidth"] || 0);
-    console.log(
-      playerRef.current["offsetHeight"],
-      headerRef?.current["offsetHeight"]
-    );
+    // console.log(
+    //   playerRef.current["offsetHeight"],
+    //   headerRef?.current["offsetHeight"]
+    // );
     setPlayerHeight(playerRef.current["offsetHeight"] || 0);
   }, [screenOrientation, playerRef, headerRef]);
   useEffect(() => {
